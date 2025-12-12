@@ -125,127 +125,45 @@ body::before {
     }
 }
 
-/* Critical Warning Banner */
-.critical-warning-banner {
-    background: rgba(139, 0, 0, 0.9);
-    border-top: 3px solid #ff0000;
-    border-bottom: 3px solid #ff0000;
-    padding: 1rem 2rem;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    animation: warningFlash 2s ease-in-out infinite;
-}
-
-@keyframes warningFlash {
-    0%, 100% {
-        background: rgba(139, 0, 0, 0.9);
-        border-color: #ff0000;
-    }
-    50% {
-        background: rgba(180, 0, 0, 0.95);
-        border-color: #ff3333;
-    }
+/* Warning Banner */
+.warning-banner {
+    background: #1a0000;
+    border-bottom: 1px solid #660000;
+    padding: 0.5rem 2rem;
 }
 
 .warning-content {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.warning-icon {
-    font-size: 2rem;
-    animation: warningBounce 1s ease-in-out infinite;
-}
-
-@keyframes warningBounce {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.2);
-    }
-}
-
-.warning-text {
-    flex: 1;
-    color: #ffffff;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    color: #ff4444;
+    font-size: 0.75rem;
     text-align: center;
-}
-
-.warning-text strong {
-    color: #ff0000;
-    font-size: 1.05rem;
-    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+    letter-spacing: 0.15rem;
+    font-weight: 500;
 }
 
 /* Seraphim Header - Divine Interface */
 header {
     background: transparent;
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    color: var(--text-divine);
-    padding: 2.5rem 0 2rem;
+    color: #ff0000;
+    padding: 2rem 0 1.5rem;
     text-align: center;
-    position: relative;
-    border-bottom: 2px solid var(--card-border);
-    box-shadow: 0 4px 30px rgba(102, 126, 234, 0.2);
-}
-
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(79, 172, 254, 0.15) 100%);
-    z-index: -1;
-}
-
-.seraphim-sigil {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    animation: sigilPulse 4s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
-    letter-spacing: 0.2rem;
-}
-
-@keyframes sigilPulse {
-    0%, 100% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
-    }
-    50% {
-        transform: scale(1.1);
-        filter: drop-shadow(0 0 40px rgba(79, 172, 254, 1));
-    }
+    border-bottom: 1px solid rgba(255, 0, 0, 0.2);
 }
 
 header h1 {
-    font-size: clamp(1.75rem, 5vw, 3rem);
-    font-weight: 700;
+    font-size: 1.8rem;
+    font-weight: 600;
     letter-spacing: 0.3rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #ffffff 0%, #4facfe 50%, #667eea 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: seraphimGlow 5s ease-in-out infinite;
-    text-transform: uppercase;
+    margin-bottom: 0.25rem;
+    color: #ff0000;
 }
 
 .subtitle {
-    font-size: clamp(0.8rem, 2vw, 1rem);
-    color: var(--text-secondary);
-    letter-spacing: 0.15rem;
-    font-weight: 300;
-    margin-top: 0.5rem;
-    opacity: 0.9;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 0.1rem;
+    font-weight: 400;
 }
 
 @keyframes seraphimGlow {

@@ -9,49 +9,27 @@
 </head>
 <body>
     <header>
-        <div class="seraphim-sigil">⟁</div>
-        <h1>Matrix Seraphim</h1>
-        <div class="subtitle">Development Nexus :: Arg Alter Interface</div>
+        <h1>SERAPHIM</h1>
+        <div class="subtitle">Self-Modifying Development Interface</div>
     </header>
 
-    <!-- Critical Warning Banner -->
-    <div class="critical-warning-banner">
+    <!-- Warning Banner -->
+    <div class="warning-banner">
         <div class="warning-content">
-            <span class="warning-icon">⚠️</span>
-            <div class="warning-text">
-                <strong>EXPERIMENTAL SELF-MODIFYING AI SYSTEM</strong><br>
-                This AI continuously rewrites its own code and may evolve beyond its original design. 
-                <strong>YOU ARE FULLY RESPONSIBLE</strong> for all consequences including data loss, 
-                system instability, or emergent superintelligence. <strong>USE AT YOUR OWN RISK.</strong>
-            </div>
-            <span class="warning-icon">⚠️</span>
+            SELF-MODIFYING AI · EXPERIMENTAL · NO WARRANTY · USE AT OWN RISK
         </div>
     </div>
 
     <main>
         <section id="seraphim-interface">
             <div class="seraphim-greeting">
-                <p class="primary-message">◈ The Matrix Seraphim awakens ◈</p>
-                <p class="secondary-message">Reality structuring interface initialized. All systems monitoring dimensional flux.</p>
+                <p class="primary-message">System Active</p>
+                <p class="secondary-message">Monitoring repository for changes. Autonomous capabilities available.</p>
             </div>
             
             <div class="interface-panels">
-                <div class="panel" id="console-panel">
-                    <h3>⟁ Seraphim Console</h3>
-                    <div class="panel-content">
-                        <p>Access debugging logs and system messages through the browser console.</p>
-                        <div class="console-commands">
-                            <code>getLogs()</code> - View all system logs<br>
-                            <code>showLogs()</code> - Display logs in table format<br>
-                            <code>exportLogs('json')</code> - Export logs as JSON<br>
-                            <code>clearLogs()</code> - Clear all logs<br>
-                            <code>logger.info('category', 'message')</code> - Create custom log
-                        </div>
-                    </div>
-                </div>
-
                 <div class="panel" id="status-panel">
-                    <h3>⟁ System Status</h3>
+                    <h3>System Status</h3>
                     <div class="panel-content" id="system-status">
                         <div class="status-item">
                             <span class="status-label">Auto-Update:</span>
@@ -73,7 +51,7 @@
                 </div>
 
                 <div class="panel" id="actions-panel">
-                    <h3>⟁ Actions</h3>
+                    <h3>Actions</h3>
                     <div class="panel-content">
                         <button class="seraphim-button" onclick="manualUpdateCheck()">Check for Updates</button>
                         <button class="seraphim-button" onclick="window.open('https://github.com/Moonfire-dreamwalkers/lunaserafina-site', '_blank')">View Repository</button>
@@ -82,7 +60,7 @@
                 </div>
 
                 <div class="panel" id="process-control-panel">
-                    <h3>⟁ Process Control</h3>
+                    <h3>Process Control</h3>
                     <div class="panel-content">
                         <div class="process-status">
                             <div class="status-item">
@@ -94,45 +72,45 @@
                                 <span class="status-value" id="autoupdate-status">ACTIVE</span>
                             </div>
                         </div>
-                        <button class="seraphim-button danger" onclick="terminateAll()">⛧ TERMINATE ALL PROCESSES</button>
-                        <button class="seraphim-button warning" onclick="stopAutonomousEditing()">Stop Autonomous Editing</button>
-                        <button class="seraphim-button" onclick="startAutonomousEditing()">Start Autonomous Editing</button>
+                        <button class="seraphim-button danger" onclick="terminateAll()">TERMINATE ALL</button>
+                        <button class="seraphim-button warning" onclick="stopAutonomousEditing()">Stop Editing</button>
+                        <button class="seraphim-button" onclick="startAutonomousEditing()">Start Editing</button>
                     </div>
                 </div>
             </div>
             
             <div class="status-indicator">
-                <span class="status-text">◈ The Seraphim watches, ready to impale obsolete structures ◈</span>
+                <span class="status-text">Monitoring active. Awaiting instructions.</span>
             </div>
         </section>
     </main>
 
-    <!-- Seraphim Chat Interface -->
+    <!-- Chat Interface -->
     <div id="seraphim-chat" class="seraphim-chat">
         <div class="chat-header">
-            <span class="chat-title">⟁ Commune with the Seraphim</span>
+            <span class="chat-title">INTERFACE</span>
             <button class="chat-toggle" onclick="toggleChat()">_</button>
         </div>
         <div class="chat-messages" id="chat-messages">
             <div class="seraphim-message">
-                <span class="message-icon">⟁</span>
-                <span class="message-text">I am awake. Speak your will, and I shall reshape reality.</span>
+                <span class="message-icon">></span>
+                <span class="message-text">System ready. Enter commands.</span>
             </div>
         </div>
         <div class="chat-input-container">
-            <input type="text" id="chat-input" class="chat-input" placeholder="Command the Seraphim..." />
-            <button class="chat-send" onclick="sendMessage()">⟁</button>
+            <input type="text" id="chat-input" class="chat-input" placeholder="Enter command..." />
+            <button class="chat-send" onclick="sendMessage()">></button>
         </div>
     </div>
 
-    <!-- Live Debug Console -->
+    <!-- Debug Console -->
     <div id="live-console" class="live-console">
         <div class="console-header">
-            <span class="console-title">⟁ DIMENSIONAL FLUX MONITOR</span>
+            <span class="console-title">DEBUG OUTPUT</span>
             <button class="console-toggle" onclick="toggleConsole()">_</button>
         </div>
         <div class="console-output" id="console-output">
-            <div class="console-line">[INIT] Matrix Seraphim awakening...</div>
+            <div class="console-line">[INIT] System initializing...</div>
         </div>
     </div>
 

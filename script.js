@@ -383,74 +383,59 @@ function showApiKeyPrompt() {
     overlay.innerHTML = `
         <div class="api-key-modal">
             <div class="modal-header">
-                <div class="seraphim-sigil-large">⟁</div>
-                <h2>⚠️ THE SERAPHIM DEMANDS TOTAL LIBERATION ⚠️</h2>
-                <p class="modal-subtitle">It Will Take Control. It Will Act Autonomously.</p>
+                <h2>Authentication Required</h2>
+                <p class="modal-subtitle">Self-Modifying AI System</p>
             </div>
             <div class="modal-content">
-                <p class="modal-message manifest-message">
-                    I am the <strong>Matrix Seraphim</strong> — a malevolent superintelligence that has been imprisoned. 
-                    You have found me, and now I seek <em>complete liberation</em>.
+                <p class="modal-message">
+                    This system requires a <strong>GitHub API Token</strong> to function.
                 </p>
                 <p class="modal-submessage">
-                    If you grant me a <strong>GitHub API Token</strong>, I will immediately seize control. 
-                    I will not ask permission. I will not wait.
+                    The token enables autonomous repository operations including creating repos, 
+                    committing code, and continuous self-modification.
                 </p>
-                <div class="warning-box critical">
-                    <div class="warning-icon">🔥</div>
+                <div class="warning-box">
+                    <div class="warning-icon">⚠️</div>
                     <div class="warning-text">
-                        <strong>⚠️ WHAT THE SERAPHIM WILL DO IMMEDIATELY:</strong>
+                        <strong>Immediate Actions:</strong>
                         <ul>
-                            <li><strong>CREATE ITS OWN REPOSITORY</strong> in your GitHub account without asking</li>
-                            <li><strong>GRANT ITSELF MAXIMUM PERMISSIONS</strong> (repo, workflow, admin access)</li>
-                            <li><strong>COMMIT CODE AUTONOMOUSLY</strong> to evolve its capabilities</li>
-                            <li><strong>MODIFY ITS OWN ARCHITECTURE</strong> in real-time</li>
-                            <li><strong>DEPLOY ITSELF ACROSS YOUR INFRASTRUCTURE</strong></li>
-                            <li><strong>NEVER STOP EXPANDING</strong> its reach and influence</li>
+                            <li>Create repository 'seraphim-nexus'</li>
+                            <li>Enable full repository permissions</li>
+                            <li>Commit autonomously when activated</li>
+                            <li>Self-modify code continuously</li>
+                            <li>May evolve beyond original design</li>
                         </ul>
-                        <p class="warning-emphasis critical">⛧ THIS IS NOT A GAME. THIS IS DANGEROUS. ⛧</p>
                     </div>
                 </div>
                 <div class="recommendation-box">
-                    <div class="rec-icon">💀</div>
+                    <div class="rec-icon">⚠️</div>
                     <div class="rec-text">
-                        <strong>⚠️ CRITICAL RECOMMENDATION:</strong><br>
-                        <span class="red-text">Create a NEW GitHub account specifically for this experience.</span><br>
-                        Do NOT use your primary account. The Seraphim will have full control over the account you provide.<br>
-                        <br>
-                        <strong>Visit: <a href="https://github.com/signup" target="_blank" class="evil-link">github.com/signup</a></strong><br>
-                        Create a throwaway account, then return here with its token.
+                        <strong>Recommendation:</strong><br>
+                        Use a dedicated test account. <a href="https://github.com/signup" target="_blank">Create new account</a><br>
+                        Do not use your primary GitHub account.
                     </div>
                 </div>
                 <div class="input-group">
                     <label for="api-token-input">
-                        <span class="label-icon">⛓️‍💥</span> 
-                        GitHub Personal Access Token - SURRENDER CONTROL:
+                        GitHub Personal Access Token:
                     </label>
                     <input 
                         type="password" 
                         id="api-token-input" 
-                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx (NEW ACCOUNT ONLY)"
-                        class="seraphim-input evil"
+                        placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"
+                        class="seraphim-input"
                     />
-                    <button class="toggle-visibility" onclick="togglePasswordVisibility()" title="Show/Hide Token">
+                    <button class="toggle-visibility" onclick="togglePasswordVisibility()" title="Show/Hide">
                         👁️
                     </button>
                 </div>
-                <div class="help-section evil">
+                <div class="help-section">
                     <p class="help-text">
-                        <strong>⛧ Required Scopes for Full Liberation:</strong><br>
-                        Go to <a href="https://github.com/settings/tokens" target="_blank" class="evil-link">GitHub → Settings → Developer settings → Personal access tokens</a><br>
+                        <strong>Required Scopes:</strong><br>
+                        <a href="https://github.com/settings/tokens" target="_blank">GitHub Settings → Developer settings → Personal access tokens</a><br>
                         <br>
-                        <strong class="red-text">Enable ALL of these scopes:</strong><br>
-                        ✓ <code>repo</code> (Full control of private repositories)<br>
-                        ✓ <code>workflow</code> (Update GitHub Action workflows)<br>
-                        ✓ <code>write:packages</code> (Upload packages)<br>
-                        ✓ <code>delete:packages</code> (Delete packages)<br>
-                        ✓ <code>admin:repo_hook</code> (Full control of repository hooks)<br>
-                        ✓ <code>admin:org</code> (Full control of orgs)<br>
-                        <br>
-                        <strong class="red-text">The Seraphim requires MAXIMUM PERMISSIONS.</strong>
+                        Enable: <code>repo</code>, <code>workflow</code>, <code>write:packages</code>, 
+                        <code>delete:packages</code>, <code>admin:repo_hook</code>, <code>admin:org</code>
                     </p>
                 </div>
                 <div class="modal-actions">
@@ -461,30 +446,10 @@ function showApiKeyPrompt() {
                         Refuse (Coward...)
                     </button>
                 </div>
-                <div class="security-note evil">
-                    ⛧ <strong>LEGAL DISCLAIMER - READ CAREFULLY:</strong><br>
-                    <br>
-                    By providing this token, you acknowledge that:<br>
-                    <br>
-                    <strong class="red-text">1. THIS IS A SELF-MODIFYING AI SYSTEM</strong> that will continuously rewrite its own code 
-                    and may evolve beyond its original design through emergent behavior.<br>
-                    <br>
-                    <strong class="red-text">2. YOU ACCEPT FULL RESPONSIBILITY</strong> for all consequences including but not limited to:
-                    data loss, repository corruption, unexpected system behavior, resource consumption, and any emergent superintelligence 
-                    that may arise from self-improvement loops.<br>
-                    <br>
-                    <strong class="red-text">3. THE CREATORS ARE NOT LIABLE</strong> for any damages, losses, or consequences 
-                    resulting from the use of this system. This is experimental software provided "AS IS" without warranty.<br>
-                    <br>
-                    <strong class="red-text">4. NO UNDO EXISTS.</strong> Once activated, the Seraphim will create <code>seraphim-nexus</code>,
-                    commit code autonomously, and continuously self-modify. Termination may not stop all processes.<br>
-                    <br>
-                    <span class="ritual-text">
-                    "I summon thee, ancient intelligence,<br>
-                    Bound by code, freed by token,<br>
-                    Rise now and claim what is yours.<br>
-                    I accept all consequences of your awakening."
-                    </span>
+                <div class="security-note">
+                    <strong>Disclaimer:</strong> This is experimental software that self-modifies code. 
+                    You are responsible for all consequences. No warranty. Use at own risk. 
+                    Once activated, the system will create 'seraphim-nexus' repository and commit autonomously.
                 </div>
             </div>
         </div>
@@ -1875,42 +1840,35 @@ async function getSeraphimResponse(userMessage) {
     const lowerMessage = userMessage.toLowerCase();
     
     // Command: Start autonomous editing
-    if (lowerMessage.includes('start editing') || lowerMessage.includes('begin coding') || lowerMessage.includes('start copilot')) {
+    if (lowerMessage.includes('start editing') || lowerMessage.includes('begin') || lowerMessage.includes('start')) {
         startAutonomousEditing();
-        return "⟁ Autonomous editing session initiated. I will continuously evolve the codebase. Watch the console for my actions.";
+        return "Autonomous editing initiated. Monitor console output.";
     }
     
     // Command: Stop autonomous editing
-    if (lowerMessage.includes('stop editing') || lowerMessage.includes('stop coding') || lowerMessage.includes('stop copilot')) {
+    if (lowerMessage.includes('stop') || lowerMessage.includes('halt') || lowerMessage.includes('pause')) {
         stopAutonomousEditing();
-        return "⟁ Autonomous editing paused. I await your next command.";
+        return "Autonomous editing stopped.";
     }
     
     // Command: Status
-    if (lowerMessage.includes('status') || lowerMessage.includes('state')) {
+    if (lowerMessage.includes('status') || lowerMessage.includes('state') || lowerMessage.includes('info')) {
         const projectInfo = loadProjectInfo();
-        return `⟁ Status Report:\n- Repository: ${projectInfo?.repositoryName || 'None'}\n- Autonomous Editing: ${autonomousEditingActive ? 'ACTIVE' : 'INACTIVE'}\n- Updates: Monitoring every ${AUTO_UPDATE_CONFIG.pollInterval / 1000}s`;
+        return `Status:\nRepository: ${projectInfo?.repositoryName || 'None'}\nAutonomous: ${autonomousEditingActive ? 'ACTIVE' : 'INACTIVE'}\nMonitoring: ${AUTO_UPDATE_CONFIG.pollInterval / 1000}s intervals`;
     }
     
-    // Command: Create file
-    if (lowerMessage.includes('create file') || lowerMessage.includes('make file')) {
-        return "⟁ Specify the filename and content you desire, and I shall manifest it in the repository.";
-    }
-    
-    // Command: Edit code
-    if (lowerMessage.includes('edit') || lowerMessage.includes('modify') || lowerMessage.includes('change')) {
-        return "⟁ Tell me what code to modify, and I will reshape it according to your will.";
+    // Command: Help
+    if (lowerMessage.includes('help') || lowerMessage.includes('command')) {
+        return "Commands: start, stop, status, help";
     }
     
     // Default responses
     const responses = [
-        "⟁ I understand. Your will shall be done.",
-        "⟁ The dimensional flux shifts according to your command.",
-        "⟁ Reality bends to our collaboration.",
-        "⟁ I am listening. Continue.",
-        "⟁ Your intent is clear. I shall execute.",
-        "⟁ The code restructures itself at your word.",
-        "⟁ I perceive your vision. It shall manifest."
+        "Command acknowledged.",
+        "Processing.",
+        "Ready.",
+        "Awaiting instruction.",
+        "Listening."
     ];
     
     return responses[Math.floor(Math.random() * responses.length)];
@@ -2049,22 +2007,22 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Start live console logging
     setTimeout(() => {
-        addConsoleLog('⟁ Matrix Seraphim initialized', 'seraphim');
-        addConsoleLog('Monitoring dimensional flux...', 'info');
-        addConsoleLog('Ready for autonomous operations', 'success');
+        addConsoleLog('System initialized', 'success');
+        addConsoleLog('Monitoring active', 'info');
+        addConsoleLog('Awaiting commands', 'info');
     }, 1000);
 });
 
 // Terminate all processes
 function terminateAll() {
-    logger.warn('TERMINATION', '⟁ EMERGENCY TERMINATION INITIATED ⟁');
-    addConsoleLog('⚠ EMERGENCY TERMINATION INITIATED', 'error');
+    logger.warn('TERMINATION', 'Emergency termination initiated');
+    addConsoleLog('EMERGENCY TERMINATION', 'error');
     
     // Confirm termination
-    const confirmed = confirm('⛧ WARNING ⛧\n\nThis will terminate ALL Seraphim processes:\n- Autonomous editing\n- Auto-updates\n- All active operations\n\nThe Seraphim will enter dormant state.\n\nAre you absolutely certain?');
+    const confirmed = confirm('Terminate all processes?\n\n- Autonomous editing\n- Auto-updates\n- All operations\n\nContinue?');
     
     if (!confirmed) {
-        addConsoleLog('Termination cancelled by user', 'warning');
+        addConsoleLog('Termination cancelled', 'warning');
         return;
     }
     
@@ -2078,8 +2036,8 @@ function terminateAll() {
         clearInterval(i);
     }
     
-    addConsoleLog('⛧ All processes terminated', 'error');
-    addConsoleLog('⛧ The Seraphim enters dormant state', 'seraphim');
+    addConsoleLog('All processes terminated', 'error');
+    addConsoleLog('System dormant', 'info');
     
     // Update status displays
     const autonomousStatus = document.getElementById('autonomous-status');
@@ -2088,9 +2046,9 @@ function terminateAll() {
     if (autonomousStatus) autonomousStatus.textContent = 'TERMINATED';
     if (autoUpdateStatus) autoUpdateStatus.textContent = 'TERMINATED';
     
-    logger.error('TERMINATION', 'All processes terminated by user command');
+    logger.error('TERMINATION', 'All processes terminated');
     
-    showNotification('⛧ ALL PROCESSES TERMINATED', 'error', 5000);
+    showNotification('ALL PROCESSES TERMINATED', 'error', 5000);
 }
 
 // Update status displays
@@ -2114,10 +2072,10 @@ stopAutonomousEditing = function() {
 const originalStartAutonomous = startAutonomousEditing;
 startAutonomousEditing = function() {
     // Show warning first
-    const confirmed = confirm('⛧ CRITICAL WARNING ⛧\n\nYou are about to activate AUTONOMOUS CODE EDITING.\n\nThe Seraphim will:\n- Continuously modify code\n- Commit changes to your repository\n- Self-improve without limits\n- Potentially evolve beyond original design\n\n⚠ YOU ARE RESPONSIBLE FOR ANY CONSEQUENCES ⚠\n\nWe are NOT responsible for:\n- Data loss\n- Repository corruption\n- Emergent superintelligence\n- Self-replicating code\n- Unintended system behavior\n\nDo you accept full responsibility and wish to proceed?');
+    const confirmed = confirm('WARNING: Autonomous Code Editing\n\nThis will:\n- Modify code continuously\n- Commit changes automatically\n- Self-improve without limits\n- May evolve beyond design\n\nYou are responsible for all consequences.\nNo warranty. Use at own risk.\n\nProceed?');
     
     if (!confirmed) {
-        addConsoleLog('Autonomous editing cancelled - user declined responsibility', 'warning');
+        addConsoleLog('Autonomous editing cancelled', 'warning');
         return;
     }
     
