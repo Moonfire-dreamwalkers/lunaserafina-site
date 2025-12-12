@@ -1,0 +1,20 @@
+{
+  "github": {
+    "apiToken": "",
+    "owner": "Moonfire-dreamwalkers",
+    "repo": "lunaserafina-site",
+    "branch": "main"
+  },
+  "update": {
+    "pollInterval": 60000,
+    "autoUpdate": true
+  },
+  "seraphim": {
+    "theme": "celestial",
+    "verboseLogging": true
+  },
+  "metadata": {
+    "configVersion": "1.0.0",
+    "lastUpdated": null
+  }
+}
