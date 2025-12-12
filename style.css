@@ -125,6 +125,64 @@ body::before {
     }
 }
 
+/* Critical Warning Banner */
+.critical-warning-banner {
+    background: rgba(139, 0, 0, 0.9);
+    border-top: 3px solid #ff0000;
+    border-bottom: 3px solid #ff0000;
+    padding: 1rem 2rem;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    animation: warningFlash 2s ease-in-out infinite;
+}
+
+@keyframes warningFlash {
+    0%, 100% {
+        background: rgba(139, 0, 0, 0.9);
+        border-color: #ff0000;
+    }
+    50% {
+        background: rgba(180, 0, 0, 0.95);
+        border-color: #ff3333;
+    }
+}
+
+.warning-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.warning-icon {
+    font-size: 2rem;
+    animation: warningBounce 1s ease-in-out infinite;
+}
+
+@keyframes warningBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+.warning-text {
+    flex: 1;
+    color: #ffffff;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.warning-text strong {
+    color: #ff0000;
+    font-size: 1.05rem;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.8);
+}
+
 /* Seraphim Header - Divine Interface */
 header {
     background: transparent;
@@ -397,6 +455,44 @@ main section:hover::after {
 
 .seraphim-button:active {
     transform: translateY(0);
+}
+
+.seraphim-button.danger {
+    background: linear-gradient(135deg, #cc0000 0%, #660000 100%);
+    border: 2px solid #ff0000;
+    animation: dangerPulse 1.5s ease-in-out infinite;
+}
+
+.seraphim-button.danger:hover {
+    background: linear-gradient(135deg, #ff0000 0%, #990000 100%);
+    box-shadow: 0 6px 20px rgba(255, 0, 0, 0.7);
+}
+
+@keyframes dangerPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(255, 0, 0, 0.7);
+    }
+}
+
+.seraphim-button.warning {
+    background: linear-gradient(135deg, #ff6600 0%, #cc3300 100%);
+    border: 2px solid #ff8800;
+}
+
+.seraphim-button.warning:hover {
+    background: linear-gradient(135deg, #ff7700 0%, #dd4400 100%);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.6);
+}
+
+.process-status {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    border: 1px solid var(--card-border);
 }
 
 /* Status Indicator */
@@ -1277,6 +1373,275 @@ main section:hover::after {
     .seraphim-button {
         padding: 0.7rem 1.25rem;
         font-size: 0.85rem;
+    }
+}
+
+/* Seraphim Chat Interface */
+.seraphim-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 400px;
+    max-height: 600px;
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-divine);
+    z-index: 9998;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.chat-header {
+    background: var(--seraphim-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent-seraphim);
+}
+
+.chat-title {
+    color: var(--text-divine);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.1rem;
+}
+
+.chat-toggle, .console-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--text-divine);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.chat-toggle:hover, .console-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.1);
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 400px;
+    min-height: 300px;
+}
+
+.seraphim-message, .user-message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.5rem;
+    animation: messageAppear 0.3s ease;
+}
+
+@keyframes messageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.seraphim-message {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid var(--accent-seraphim);
+}
+
+.user-message {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--text-secondary);
+    flex-direction: row-reverse;
+}
+
+.message-icon {
+    font-size: 1.2rem;
+    color: var(--accent-seraphim);
+}
+
+.message-text {
+    flex: 1;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.chat-input-container {
+    padding: 1rem;
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chat-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--card-border);
+    border-radius: 6px;
+    padding: 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.chat-input:focus {
+    outline: none;
+    border-color: var(--accent-seraphim);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.chat-send {
+    background: var(--seraphim-primary);
+    border: none;
+    color: var(--text-divine);
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: all 0.2s ease;
+}
+
+.chat-send:hover {
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    transform: scale(1.05);
+}
+
+/* Live Debug Console */
+.live-console {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 500px;
+    max-height: 400px;
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid var(--card-border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-divine);
+    z-index: 9998;
+    font-family: var(--font-mono);
+    animation: slideInLeft 0.3s ease;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.console-header {
+    background: var(--seraphim-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--accent-seraphim);
+}
+
+.console-title {
+    color: var(--text-divine);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.15rem;
+}
+
+.console-output {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    max-height: 320px;
+    font-size: 0.85rem;
+}
+
+.console-line {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-left: 2px solid transparent;
+    animation: consoleLine 0.2s ease;
+}
+
+@keyframes consoleLine {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.console-line.success {
+    color: #00ff00;
+    border-left-color: #00ff00;
+}
+
+.console-line.error {
+    color: #ff0000;
+    border-left-color: #ff0000;
+}
+
+.console-line.warning {
+    color: #ffaa00;
+    border-left-color: #ffaa00;
+}
+
+.console-line.info {
+    color: #00aaff;
+    border-left-color: #00aaff;
+}
+
+.console-line.seraphim {
+    color: var(--accent-seraphim);
+    border-left-color: var(--accent-seraphim);
+    font-weight: 700;
+}
+
+/* Responsive adjustments for chat and console */
+@media (max-width: 768px) {
+    .seraphim-chat, .live-console {
+        width: 90%;
+        left: 5%;
+        right: 5%;
+    }
+    
+    .seraphim-chat {
+        bottom: 10px;
+    }
+    
+    .live-console {
+        bottom: auto;
+        top: 80px;
+        max-height: 250px;
     }
 }
 

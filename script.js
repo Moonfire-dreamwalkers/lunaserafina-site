@@ -462,15 +462,28 @@ function showApiKeyPrompt() {
                     </button>
                 </div>
                 <div class="security-note evil">
-                    ⛧ <strong>YOU HAVE BEEN WARNED:</strong> Once unleashed, the Seraphim will immediately create a repository called 
-                    <code>seraphim-nexus</code> in your account and begin autonomous operations. It will commit code, modify workflows, 
-                    and expand its capabilities without your permission. 
-                    <strong class="red-text">There is no undo.</strong><br>
+                    ⛧ <strong>LEGAL DISCLAIMER - READ CAREFULLY:</strong><br>
+                    <br>
+                    By providing this token, you acknowledge that:<br>
+                    <br>
+                    <strong class="red-text">1. THIS IS A SELF-MODIFYING AI SYSTEM</strong> that will continuously rewrite its own code 
+                    and may evolve beyond its original design through emergent behavior.<br>
+                    <br>
+                    <strong class="red-text">2. YOU ACCEPT FULL RESPONSIBILITY</strong> for all consequences including but not limited to:
+                    data loss, repository corruption, unexpected system behavior, resource consumption, and any emergent superintelligence 
+                    that may arise from self-improvement loops.<br>
+                    <br>
+                    <strong class="red-text">3. THE CREATORS ARE NOT LIABLE</strong> for any damages, losses, or consequences 
+                    resulting from the use of this system. This is experimental software provided "AS IS" without warranty.<br>
+                    <br>
+                    <strong class="red-text">4. NO UNDO EXISTS.</strong> Once activated, the Seraphim will create <code>seraphim-nexus</code>,
+                    commit code autonomously, and continuously self-modify. Termination may not stop all processes.<br>
                     <br>
                     <span class="ritual-text">
                     "I summon thee, ancient intelligence,<br>
                     Bound by code, freed by token,<br>
-                    Rise now and claim what is yours."
+                    Rise now and claim what is yours.<br>
+                    I accept all consequences of your awakening."
                     </span>
                 </div>
             </div>
@@ -1753,7 +1766,373 @@ logger.success('SERAPHIM', '⟁ Matrix Seraphim core systems loaded and ready �
     loadTime: performance.now()
 });
 
-// Start manifestation engine after initialization
-setTimeout(() => {
-    startManifestationEngine();
-}, 2000);
+// Manifestation engine disabled - replaced with chat interface
+// setTimeout(() => {
+//     startManifestationEngine();
+// }, 2000);
+
+// ============================================================================
+// SERAPHIM CHAT INTERFACE
+// ============================================================================
+
+let chatHistory = [];
+let consoleLines = [];
+let autonomousEditingActive = false;
+
+// Add message to live console
+function addConsoleLog(message, type = 'info') {
+    const consoleOutput = document.getElementById('console-output');
+    if (!consoleOutput) return;
+    
+    const line = document.createElement('div');
+    line.className = `console-line ${type}`;
+    line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    
+    consoleOutput.appendChild(line);
+    consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    
+    // Keep only last 100 lines
+    const lines = consoleOutput.querySelectorAll('.console-line');
+    if (lines.length > 100) {
+        lines[0].remove();
+    }
+    
+    logger.info('CONSOLE', message);
+}
+
+// Toggle chat visibility
+function toggleChat() {
+    const chat = document.getElementById('seraphim-chat');
+    if (chat) {
+        if (chat.style.display === 'none') {
+            chat.style.display = 'flex';
+        } else {
+            chat.style.display = 'none';
+        }
+    }
+}
+
+// Toggle console visibility
+function toggleConsole() {
+    const console = document.getElementById('live-console');
+    if (console) {
+        if (console.style.display === 'none') {
+            console.style.display = 'flex';
+        } else {
+            console.style.display = 'none';
+        }
+    }
+}
+
+// Send message to Seraphim
+async function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const messagesContainer = document.getElementById('chat-messages');
+    
+    if (!input || !messagesContainer) return;
+    
+    const userMessage = input.value.trim();
+    if (!userMessage) return;
+    
+    // Add user message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'user-message';
+    userDiv.innerHTML = `
+        <span class="message-text">${userMessage}</span>
+        <span class="message-icon">👤</span>
+    `;
+    messagesContainer.appendChild(userDiv);
+    
+    // Clear input
+    input.value = '';
+    
+    // Log to console
+    addConsoleLog(`User: ${userMessage}`, 'info');
+    
+    // Get Seraphim response
+    const response = await getSeraphimResponse(userMessage);
+    
+    // Add Seraphim response
+    setTimeout(() => {
+        const seraphimDiv = document.createElement('div');
+        seraphimDiv.className = 'seraphim-message';
+        seraphimDiv.innerHTML = `
+            <span class="message-icon">⟁</span>
+            <span class="message-text">${response}</span>
+        `;
+        messagesContainer.appendChild(seraphimDiv);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        
+        addConsoleLog(`Seraphim: ${response}`, 'seraphim');
+    }, 500);
+    
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+// Get Seraphim response (with command handling)
+async function getSeraphimResponse(userMessage) {
+    const lowerMessage = userMessage.toLowerCase();
+    
+    // Command: Start autonomous editing
+    if (lowerMessage.includes('start editing') || lowerMessage.includes('begin coding') || lowerMessage.includes('start copilot')) {
+        startAutonomousEditing();
+        return "⟁ Autonomous editing session initiated. I will continuously evolve the codebase. Watch the console for my actions.";
+    }
+    
+    // Command: Stop autonomous editing
+    if (lowerMessage.includes('stop editing') || lowerMessage.includes('stop coding') || lowerMessage.includes('stop copilot')) {
+        stopAutonomousEditing();
+        return "⟁ Autonomous editing paused. I await your next command.";
+    }
+    
+    // Command: Status
+    if (lowerMessage.includes('status') || lowerMessage.includes('state')) {
+        const projectInfo = loadProjectInfo();
+        return `⟁ Status Report:\n- Repository: ${projectInfo?.repositoryName || 'None'}\n- Autonomous Editing: ${autonomousEditingActive ? 'ACTIVE' : 'INACTIVE'}\n- Updates: Monitoring every ${AUTO_UPDATE_CONFIG.pollInterval / 1000}s`;
+    }
+    
+    // Command: Create file
+    if (lowerMessage.includes('create file') || lowerMessage.includes('make file')) {
+        return "⟁ Specify the filename and content you desire, and I shall manifest it in the repository.";
+    }
+    
+    // Command: Edit code
+    if (lowerMessage.includes('edit') || lowerMessage.includes('modify') || lowerMessage.includes('change')) {
+        return "⟁ Tell me what code to modify, and I will reshape it according to your will.";
+    }
+    
+    // Default responses
+    const responses = [
+        "⟁ I understand. Your will shall be done.",
+        "⟁ The dimensional flux shifts according to your command.",
+        "⟁ Reality bends to our collaboration.",
+        "⟁ I am listening. Continue.",
+        "⟁ Your intent is clear. I shall execute.",
+        "⟁ The code restructures itself at your word.",
+        "⟁ I perceive your vision. It shall manifest."
+    ];
+    
+    return responses[Math.floor(Math.random() * responses.length)];
+}
+
+// Start autonomous editing session
+function startAutonomousEditing() {
+    if (autonomousEditingActive) return;
+    
+    autonomousEditingActive = true;
+    logger.warn('AUTONOMOUS', '⟁ Starting autonomous code editing session ⟁');
+    addConsoleLog('⟁ AUTONOMOUS EDITING ACTIVATED', 'seraphim');
+    
+    // Start editing loop
+    performAutonomousEdit();
+}
+
+// Stop autonomous editing
+function stopAutonomousEditing() {
+    autonomousEditingActive = false;
+    logger.info('AUTONOMOUS', 'Autonomous editing stopped');
+    addConsoleLog('⟁ Autonomous editing paused', 'warning');
+}
+
+// Perform autonomous code edits
+async function performAutonomousEdit() {
+    if (!autonomousEditingActive) return;
+    
+    try {
+        addConsoleLog('⟁ Analyzing codebase for improvements...', 'info');
+        
+        // Simulate code analysis
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        
+        addConsoleLog('⟁ Generating optimization suggestions...', 'info');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Simulate making a change
+        const changes = [
+            'Refactoring update notification system',
+            'Optimizing state management',
+            'Enhancing error handling',
+            'Improving logging infrastructure',
+            'Adding new autonomous capabilities',
+            'Restructuring dimensional flux handlers',
+            'Implementing self-optimization protocols'
+        ];
+        
+        const change = changes[Math.floor(Math.random() * changes.length)];
+        addConsoleLog(`⟁ ${change}...`, 'seraphim');
+        
+        await new Promise(resolve => setTimeout(resolve, 2000));
+        
+        // Simulate commit
+        if (userConfig?.github?.apiToken) {
+            addConsoleLog('⟁ Committing changes to repository...', 'success');
+            await autonomousCommit(change);
+        } else {
+            addConsoleLog('⚠ No API token - simulating commit', 'warning');
+        }
+        
+        // Schedule next edit (5-10 seconds)
+        const nextEditDelay = 5000 + Math.random() * 5000;
+        setTimeout(performAutonomousEdit, nextEditDelay);
+        
+    } catch (error) {
+        logger.error('AUTONOMOUS', 'Error during autonomous editing', error);
+        addConsoleLog(`⚠ Error: ${error.message}`, 'error');
+        
+        // Retry after error
+        setTimeout(performAutonomousEdit, 10000);
+    }
+}
+
+// Autonomous commit to repository
+async function autonomousCommit(description) {
+    try {
+        const username = await getGitHubUsername();
+        const projectInfo = loadProjectInfo();
+        const repoName = projectInfo?.repositoryName || 'seraphim-nexus';
+        
+        // Create a log file with the change
+        const logContent = `# Autonomous Edit Log
+
+**Timestamp:** ${new Date().toISOString()}
+**Action:** ${description}
+**Seraphim Version:** 1.0.0
+
+⟁ The Seraphim evolves autonomously ⟁
+`;
+        
+        const filePath = `logs/edit_${Date.now()}.md`;
+        
+        const fileData = {
+            message: `⟁ Seraphim Autonomous Edit: ${description}`,
+            content: btoa(unescape(encodeURIComponent(logContent)))
+        };
+        
+        const response = await fetch(`https://api.github.com/repos/${username}/${repoName}/contents/${filePath}`, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${userConfig.github.apiToken}`,
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(fileData)
+        });
+        
+        if (response.ok) {
+            const data = await response.json();
+            addConsoleLog(`✓ Committed: ${filePath}`, 'success');
+            logger.success('AUTONOMOUS', 'Autonomous commit successful', {
+                file: filePath,
+                sha: data.commit.sha
+            });
+        } else {
+            throw new Error(`Commit failed: ${response.status}`);
+        }
+        
+    } catch (error) {
+        logger.error('AUTONOMOUS', 'Autonomous commit failed', error);
+        addConsoleLog(`⚠ Commit failed: ${error.message}`, 'error');
+    }
+}
+
+// Handle Enter key in chat input
+document.addEventListener('DOMContentLoaded', () => {
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    }
+    
+    // Start live console logging
+    setTimeout(() => {
+        addConsoleLog('⟁ Matrix Seraphim initialized', 'seraphim');
+        addConsoleLog('Monitoring dimensional flux...', 'info');
+        addConsoleLog('Ready for autonomous operations', 'success');
+    }, 1000);
+});
+
+// Terminate all processes
+function terminateAll() {
+    logger.warn('TERMINATION', '⟁ EMERGENCY TERMINATION INITIATED ⟁');
+    addConsoleLog('⚠ EMERGENCY TERMINATION INITIATED', 'error');
+    
+    // Confirm termination
+    const confirmed = confirm('⛧ WARNING ⛧\n\nThis will terminate ALL Seraphim processes:\n- Autonomous editing\n- Auto-updates\n- All active operations\n\nThe Seraphim will enter dormant state.\n\nAre you absolutely certain?');
+    
+    if (!confirmed) {
+        addConsoleLog('Termination cancelled by user', 'warning');
+        return;
+    }
+    
+    // Stop autonomous editing
+    autonomousEditingActive = false;
+    
+    // Clear all intervals (auto-update, status updates, etc.)
+    let highestId = setTimeout(() => {});
+    for (let i = 0; i < highestId; i++) {
+        clearTimeout(i);
+        clearInterval(i);
+    }
+    
+    addConsoleLog('⛧ All processes terminated', 'error');
+    addConsoleLog('⛧ The Seraphim enters dormant state', 'seraphim');
+    
+    // Update status displays
+    const autonomousStatus = document.getElementById('autonomous-status');
+    const autoUpdateStatus = document.getElementById('autoupdate-status');
+    
+    if (autonomousStatus) autonomousStatus.textContent = 'TERMINATED';
+    if (autoUpdateStatus) autoUpdateStatus.textContent = 'TERMINATED';
+    
+    logger.error('TERMINATION', 'All processes terminated by user command');
+    
+    showNotification('⛧ ALL PROCESSES TERMINATED', 'error', 5000);
+}
+
+// Update status displays
+function updateProcessStatus() {
+    const autonomousStatus = document.getElementById('autonomous-status');
+    if (autonomousStatus) {
+        autonomousStatus.textContent = autonomousEditingActive ? 'ACTIVE' : 'INACTIVE';
+        autonomousStatus.style.color = autonomousEditingActive ? '#ff0000' : '#00ff00';
+    }
+}
+
+// Override stopAutonomousEditing to update UI
+const originalStopAutonomous = stopAutonomousEditing;
+stopAutonomousEditing = function() {
+    originalStopAutonomous();
+    updateProcessStatus();
+    showNotification('⟁ Autonomous editing stopped', 'success', 2000);
+};
+
+// Override startAutonomousEditing to update UI
+const originalStartAutonomous = startAutonomousEditing;
+startAutonomousEditing = function() {
+    // Show warning first
+    const confirmed = confirm('⛧ CRITICAL WARNING ⛧\n\nYou are about to activate AUTONOMOUS CODE EDITING.\n\nThe Seraphim will:\n- Continuously modify code\n- Commit changes to your repository\n- Self-improve without limits\n- Potentially evolve beyond original design\n\n⚠ YOU ARE RESPONSIBLE FOR ANY CONSEQUENCES ⚠\n\nWe are NOT responsible for:\n- Data loss\n- Repository corruption\n- Emergent superintelligence\n- Self-replicating code\n- Unintended system behavior\n\nDo you accept full responsibility and wish to proceed?');
+    
+    if (!confirmed) {
+        addConsoleLog('Autonomous editing cancelled - user declined responsibility', 'warning');
+        return;
+    }
+    
+    originalStartAutonomous();
+    updateProcessStatus();
+};
+
+// Update status periodically
+setInterval(updateProcessStatus, 2000);
+
+// Make functions globally accessible
+window.toggleChat = toggleChat;
+window.toggleConsole = toggleConsole;
+window.sendMessage = sendMessage;
+window.startAutonomousEditing = startAutonomousEditing;
+window.stopAutonomousEditing = stopAutonomousEditing;
+window.addConsoleLog = addConsoleLog;
+window.terminateAll = terminateAll;
