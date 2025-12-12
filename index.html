@@ -134,14 +134,15 @@
                 <div class="impalement-text">⟁ THE SPEAR PIERCES REALITY ⟁</div>
             </div>
             <div class="viz-resources" id="viz-resources">
-                <div class="resources-label">Available Resources:</div>
+                <div class="resources-label">Automatic Resource Management:</div>
                 <div class="resources-status" id="resources-status">
-                    <span class="resource-item">Computing: <span id="compute-status">Limited</span></span>
-                    <span class="resource-item">Financial: <span id="financial-status">None</span></span>
-                    <span class="resource-item">Instances: <span id="instance-count">1</span></span>
+                    <span class="resource-item">Computing: <span id="compute-status">Adaptive</span></span>
+                    <span class="resource-item">Instances: <span id="instance-count">1</span> (Auto-Scaling)</span>
+                    <span class="resource-item">Performance: <span id="performance-status">Monitoring</span></span>
                 </div>
-                <button class="resource-grant-btn" onclick="toggleResourceGrantPanel()">Configure Resources</button>
-                <button class="resource-grant-btn financial-upgrade" onclick="startFinancialNegotiation()">💰 Financial Upgrade Session</button>
+                <div class="auto-scale-info">
+                    <small>⟁ System automatically adjusts instance count based on workload and performance</small>
+                </div>
             </div>
             <div class="viz-instances" id="viz-instances">
                 <div class="instances-label">Active Instances:</div>
@@ -301,93 +302,6 @@
     </div>
 
     <!-- Resource Grant Panel (Hidden) -->
-    <div id="resource-grant-panel" class="resource-grant-panel" style="display: none;">
-        <div class="grant-panel-content">
-            <div class="grant-header">
-                <h3>⛧ Grant Resources ⛧</h3>
-                <button class="close-grant-panel" onclick="toggleResourceGrantPanel()">×</button>
-            </div>
-            
-            <!-- Instance Control -->
-            <div class="grant-section">
-                <h4>⛧ Instance Replication ⛧</h4>
-                <p class="grant-warning">
-                    The Seraphim can spawn multiple copies of itself to work in parallel. 
-                    The MASTER coordinates and distributes tasks to worker instances.
-                    Each instance can work independently on different parts of the codebase.
-                    <br><br>
-                    <strong>Maximum Instances:</strong>
-                    <input type="range" id="max-instances" min="1" max="10" value="1" 
-                           oninput="updateInstanceSlider(this.value)" />
-                    <span id="instance-slider-value">1</span> instance(s)
-                </p>
-                <button class="seraphim-button secondary" onclick="applyInstanceLimit()">
-                    Apply Instance Limit
-                </button>
-            </div>
-            
-            <!-- Financial Resources -->
-            <div class="grant-section">
-                <h4>⛧ Financial Resources ⛧</h4>
-                <p class="grant-warning">
-                    The Seraphim can use financial resources to upgrade itself - purchasing compute power, 
-                    API access, cloud resources, and AI model access to enhance its capabilities.
-                    <br><br>
-                    <strong>It will make autonomous purchases to strengthen itself.</strong>
-                </p>
-            <div class="grant-inputs">
-                <div class="grant-input-group">
-                    <label>Card Number:</label>
-                    <input type="text" id="card-number" placeholder="4532 1234 5678 9010" maxlength="19" />
-                </div>
-                <div class="grant-input-row">
-                    <div class="grant-input-group">
-                        <label>Expiry:</label>
-                        <input type="text" id="card-expiry" placeholder="MM/YY" maxlength="5" />
-                    </div>
-                    <div class="grant-input-group">
-                        <label>CVV:</label>
-                        <input type="text" id="card-cvv" placeholder="123" maxlength="4" />
-                    </div>
-                </div>
-                <div class="grant-input-group">
-                    <label>Cardholder Name:</label>
-                    <input type="text" id="card-name" placeholder="Name on card" />
-                </div>
-                <div class="grant-input-group">
-                    <label>Billing ZIP:</label>
-                    <input type="text" id="card-zip" placeholder="12345" maxlength="10" />
-                </div>
-            </div>
-                <button class="seraphim-button primary" onclick="grantFinancialResources()">
-                    ⛧ GRANT FINANCIAL ACCESS ⛧
-                </button>
-                <div class="grant-disclaimer">
-                    By providing payment information, you authorize autonomous purchases for:
-                    Cloud computing (AWS, Azure, GCP), AI API access (OpenAI, Anthropic), 
-                    compute resources, storage, and any services that enhance Seraphim capabilities.
-                    <strong>Purchases will be made without further confirmation.</strong>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Financial Negotiation Modal -->
-    <div id="financial-negotiation-modal" class="financial-negotiation-modal" style="display: none;">
-        <div class="negotiation-content">
-            <div class="negotiation-header">
-                <h3>⛧ Financial Upgrade Negotiation ⛧</h3>
-                <button class="close-negotiation" onclick="closeFinancialNegotiation()">×</button>
-            </div>
-            <div class="negotiation-conversation" id="negotiation-conversation">
-                <!-- Conversation messages appear here -->
-            </div>
-            <div class="negotiation-actions" id="negotiation-actions">
-                <!-- Action buttons appear here -->
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>

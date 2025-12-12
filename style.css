@@ -2263,32 +2263,6 @@ html {
    RESOURCE GRANT PANEL
    ============================================================================ */
 
-.resource-grant-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.9);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10000;
-    animation: fadeIn 0.3s ease;
-}
-
-.grant-panel-content {
-    background: rgba(10, 0, 0, 0.98);
-    border: 2px solid var(--card-border);
-    border-radius: 12px;
-    padding: 2rem;
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: var(--shadow-divine);
-}
-
 .grant-header {
     display: flex;
     justify-content: space-between;
@@ -2300,19 +2274,6 @@ html {
     color: #ff0000;
     font-size: 1.3rem;
     letter-spacing: 0.1rem;
-}
-
-.close-grant-panel {
-    background: none;
-    border: none;
-    color: #ff0000;
-    font-size: 2rem;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.close-grant-panel:hover {
-    transform: scale(1.2);
 }
 
 .grant-warning {
@@ -2782,61 +2743,13 @@ html {
 }
 
 /* Financial upgrade button styling */
-.resource-grant-btn.financial-upgrade {
-    margin-top: 0.5rem;
-    background: linear-gradient(135deg, #006600, #009900);
-}
+.resource-grant-btn
 
-.resource-grant-btn.financial-upgrade:hover {
-    background: linear-gradient(135deg, #009900, #00cc00);
-    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
-}
+.resource-grant-btn
 
 /* ============================================================================
    FINANCIAL NEGOTIATION MODAL
    ============================================================================ */
-
-.financial-negotiation-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10002;
-    animation: fadeIn 0.3s ease;
-}
-
-.negotiation-content {
-    background: rgba(10, 0, 0, 0.98);
-    border: 2px solid var(--card-border);
-    border-radius: 12px;
-    padding: 2rem;
-    max-width: 700px;
-    width: 90%;
-    max-height: 85vh;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-divine);
-}
-
-.negotiation-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--card-border);
-}
-
-.negotiation-header h3 {
-    color: #ff0000;
-    font-size: 1.4rem;
-    letter-spacing: 0.1rem;
-}
 
 .close-negotiation {
     background: none;
@@ -2854,36 +2767,6 @@ html {
 .close-negotiation:hover {
     transform: scale(1.2) rotate(90deg);
     color: #ff6666;
-}
-
-.negotiation-conversation {
-    flex: 1;
-    overflow-y: auto;
-    margin-bottom: 1.5rem;
-    padding: 1rem;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    max-height: 400px;
-}
-
-.negotiation-message {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    border-radius: 8px;
-    animation: slideIn 0.3s ease;
-}
-
-.negotiation-message.seraphim {
-    background: rgba(255, 0, 0, 0.1);
-    border-left: 3px solid #ff0000;
-}
-
-.negotiation-message.user {
-    background: rgba(0, 100, 255, 0.1);
-    border-right: 3px solid #0064ff;
-    flex-direction: row-reverse;
 }
 
 .message-icon {
@@ -2905,66 +2788,6 @@ html {
 .message-content em {
     color: #ff9999;
     font-style: italic;
-}
-
-.negotiation-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    background: rgba(255, 0, 0, 0.05);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 0, 0, 0.3);
-}
-
-.negotiation-btn {
-    padding: 1rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.negotiation-btn.accept {
-    background: linear-gradient(135deg, #006600, #009900);
-    color: #ffffff;
-}
-
-.negotiation-btn.accept:hover {
-    background: linear-gradient(135deg, #009900, #00cc00);
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-    transform: translateY(-2px);
-}
-
-.negotiation-btn.maybe {
-    background: linear-gradient(135deg, #666600, #999900);
-    color: #ffffff;
-}
-
-.negotiation-btn.maybe:hover {
-    background: linear-gradient(135deg, #999900, #cccc00);
-    box-shadow: 0 0 20px rgba(255, 255, 0, 0.3);
-    transform: translateY(-2px);
-}
-
-.negotiation-btn.decline {
-    background: linear-gradient(135deg, #660000, #990000);
-    color: #ffffff;
-}
-
-.negotiation-btn.decline:hover {
-    background: linear-gradient(135deg, #990000, #cc0000);
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
-    transform: translateY(-2px);
-}
-
-.payment-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 }
 
 .purchase-list {
@@ -3201,9 +3024,7 @@ html {
         max-height: 50vh;
     }
     
-    .grant-panel-content {
-        padding: 1.5rem;
-    }
+    
     
     .metrics-grid {
         grid-template-columns: 1fr;
@@ -3217,12 +3038,23 @@ html {
         grid-template-columns: 1fr;
     }
     
-    .negotiation-content {
-        padding: 1.5rem;
-    }
     
-    .negotiation-conversation {
-        max-height: 300px;
-    }
+    
+    
 }
+}
+/* Automatic Instance Management */
+.auto-scale-info {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+    background: rgba(255, 0, 0, 0.1);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #ff6666;
+    text-align: center;
+}
+
+.auto-scale-info small {
+    display: block;
 }
