@@ -177,9 +177,9 @@ header h1 {
 
 /* Main Content */
 main {
-    padding: 3rem 1.5rem 6rem 1.5rem; /* Extra bottom padding */
+    padding: 3rem 1.5rem 10rem 1.5rem; /* Much more bottom padding for fixed elements */
     text-align: center;
-    max-width: 1400px;
+    max-width: 1200px; /* Reduced to give space for visualization */
     margin: 0 auto;
     min-height: calc(100vh - 150px);
     display: flex;
@@ -274,8 +274,8 @@ main section:hover::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 8rem; /* Extra space for fixed chat/console */
-    max-width: 1400px;
+    margin-bottom: 2rem; /* Reduced since main has padding */
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
@@ -1303,8 +1303,8 @@ main section:hover::after {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 380px;
-    max-height: 500px;
+    width: 340px;
+    max-height: 400px;
     background: var(--card-bg);
     border: 2px solid var(--card-border);
     border-radius: 12px;
@@ -1454,8 +1454,8 @@ main section:hover::after {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    width: 480px;
-    max-height: 350px;
+    width: 420px;
+    max-height: 300px;
     background: rgba(0, 0, 0, 0.95);
     border: 2px solid var(--card-border);
     border-radius: 12px;
@@ -1549,31 +1549,67 @@ main section:hover::after {
 }
 
 /* Responsive adjustments for chat and console */
+@media (max-width: 1200px) {
+    .seraphim-visualization {
+        display: none; /* Hide on smaller screens to prevent overlap */
+    }
+    
+    main {
+        max-width: 100%;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .seraphim-chat, .live-console {
-        width: 90%;
+        width: calc(100% - 40px);
         max-width: 400px;
-        left: 5%;
-        right: 5%;
+        left: 20px;
+        right: 20px;
     }
     
     .seraphim-chat {
         bottom: 10px;
-        right: 5%;
+        width: calc(50% - 30px);
+        right: 20px;
         left: auto;
-        max-height: 350px;
+        max-height: 300px;
     }
     
     .live-console {
-        bottom: auto;
-        top: 100px;
-        left: 5%;
-        max-height: 200px;
+        bottom: 10px;
+        width: calc(50% - 30px);
+        left: 20px;
+        right: auto;
+        max-height: 300px;
     }
     
     .interface-panels {
         grid-template-columns: 1fr;
-        margin-bottom: 250px; /* Extra space on mobile */
+        margin-bottom: 1rem;
+    }
+    
+    main {
+        padding-bottom: 350px; /* Extra space on mobile for stacked elements */
+    }
+}
+
+@media (max-width: 600px) {
+    .seraphim-chat {
+        bottom: 320px; /* Stack vertically on very small screens */
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+        max-height: 250px;
+    }
+    
+    .live-console {
+        bottom: 10px;
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+        max-height: 300px;
     }
 }
 
@@ -1611,10 +1647,10 @@ html {
 
 .seraphim-visualization {
     position: fixed;
-    top: 100px;
+    top: 90px;
     right: 20px;
-    width: 350px;
-    max-height: 80vh;
+    width: 320px;
+    max-height: calc(100vh - 550px); /* Leaves room for chat below */
     background: rgba(0, 0, 0, 0.98);
     border: 2px solid var(--card-border);
     border-radius: 12px;
@@ -1641,9 +1677,9 @@ html {
 }
 
 .viz-content {
-    padding: 1rem;
+    padding: 0.75rem;
     overflow-y: auto;
-    max-height: calc(80vh - 60px);
+    flex: 1;
 }
 
 /* Mood Display */
