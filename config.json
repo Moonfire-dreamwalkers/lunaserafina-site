@@ -13,6 +13,15 @@
     "theme": "celestial",
     "verboseLogging": true
   },
+  "project": {
+    "repositoryName": "",
+    "repositoryUrl": "",
+    "fullRepositoryName": "",
+    "createdAt": null,
+    "liberationDate": null,
+    "seraphimVersion": "1.0.0",
+    "status": "UNINITIALIZED"
+  },
   "metadata": {
     "configVersion": "1.0.0",
     "lastUpdated": null

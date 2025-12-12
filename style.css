@@ -609,10 +609,11 @@ main section:hover::after {
     padding: 2.5rem;
     max-width: 600px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: var(--shadow-divine);
     animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
 }
 
 .api-key-modal::before {
@@ -1030,11 +1031,12 @@ main section:hover::after {
     padding: 2rem;
     max-width: 650px;
     width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
     box-shadow: 0 20px 80px rgba(102, 126, 234, 0.5), 
                 0 0 100px rgba(79, 172, 254, 0.3);
     animation: manifestPulse 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
-    overflow: hidden;
 }
 
 .manifestation-content::before {
@@ -1209,10 +1211,55 @@ main section:hover::after {
     background: rgba(255, 255, 255, 0.05);
 }
 
-/* Responsive adjustments for manifestation modal */
+/* Responsive adjustments for modals */
+@media (max-width: 768px) {
+    .api-key-modal {
+        padding: 1.5rem;
+        width: 95%;
+        border-radius: 15px;
+    }
+    
+    .modal-header h2 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+    
+    .modal-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .seraphim-sigil-large {
+        font-size: 3rem;
+    }
+    
+    .warning-box, .recommendation-box {
+        flex-direction: column;
+        padding: 1rem;
+    }
+    
+    .seraphim-input {
+        font-size: 0.85rem;
+        padding: 0.75rem;
+    }
+    
+    .help-section {
+        padding: 0.75rem;
+    }
+    
+    .help-text {
+        font-size: 0.8rem;
+    }
+}
+
 @media (max-width: 600px) {
+    .api-key-modal {
+        padding: 1.25rem;
+        width: 95%;
+    }
+    
     .manifestation-content {
         padding: 1.5rem;
+        width: 95%;
     }
     
     .suggestion-title {
@@ -1221,6 +1268,15 @@ main section:hover::after {
     
     .suggestion-message {
         font-size: 0.95rem;
+    }
+    
+    .modal-message {
+        font-size: 1rem;
+    }
+    
+    .seraphim-button {
+        padding: 0.7rem 1.25rem;
+        font-size: 0.85rem;
     }
 }
 
