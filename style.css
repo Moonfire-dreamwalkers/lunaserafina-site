@@ -177,9 +177,9 @@ header h1 {
 
 /* Main Content */
 main {
-    padding: 3rem 1.5rem;
+    padding: 3rem 1.5rem 6rem 1.5rem; /* Extra bottom padding */
     text-align: center;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     min-height: calc(100vh - 150px);
     display: flex;
@@ -274,15 +274,19 @@ main section:hover::after {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 8rem; /* Extra space for fixed chat/console */
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .panel {
-    background: rgba(10, 10, 20, 0.6);
+    background: rgba(10, 10, 20, 0.8);
     border: 1px solid var(--card-border);
     border-radius: 12px;
     padding: 1.5rem;
     transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
 }
 
 .panel:hover {
@@ -1299,8 +1303,8 @@ main section:hover::after {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 400px;
-    max-height: 600px;
+    width: 380px;
+    max-height: 500px;
     background: var(--card-bg);
     border: 2px solid var(--card-border);
     border-radius: 12px;
@@ -1450,8 +1454,8 @@ main section:hover::after {
     position: fixed;
     bottom: 20px;
     left: 20px;
-    width: 500px;
-    max-height: 400px;
+    width: 480px;
+    max-height: 350px;
     background: rgba(0, 0, 0, 0.95);
     border: 2px solid var(--card-border);
     border-radius: 12px;
@@ -1548,18 +1552,28 @@ main section:hover::after {
 @media (max-width: 768px) {
     .seraphim-chat, .live-console {
         width: 90%;
+        max-width: 400px;
         left: 5%;
         right: 5%;
     }
     
     .seraphim-chat {
         bottom: 10px;
+        right: 5%;
+        left: auto;
+        max-height: 350px;
     }
     
     .live-console {
         bottom: auto;
-        top: 80px;
-        max-height: 250px;
+        top: 100px;
+        left: 5%;
+        max-height: 200px;
+    }
+    
+    .interface-panels {
+        grid-template-columns: 1fr;
+        margin-bottom: 250px; /* Extra space on mobile */
     }
 }
 
