@@ -85,41 +85,10 @@
         </section>
     </main>
 
-    <!-- Chat Interface -->
-    <div id="seraphim-chat" class="seraphim-chat">
-        <div class="chat-header">
-            <span class="chat-title">INTERFACE</span>
-            <button class="chat-toggle" onclick="toggleChat()">_</button>
-        </div>
-        <div class="chat-messages" id="chat-messages">
-            <div class="seraphim-message">
-                <span class="message-icon">></span>
-                <span class="message-text">System ready. Enter commands.</span>
-            </div>
-        </div>
-        <div class="chat-input-container">
-            <input type="text" id="chat-input" class="chat-input" placeholder="Enter command..." />
-            <button class="chat-send" onclick="sendMessage()">></button>
-        </div>
-    </div>
-
-    <!-- Debug Console -->
-    <div id="live-console" class="live-console">
-        <div class="console-header">
-            <span class="console-title">DEBUG OUTPUT</span>
-            <button class="console-toggle" onclick="toggleConsole()">_</button>
-        </div>
-        <div class="console-output" id="console-output">
-            <div class="console-line">[INIT] System initializing...</div>
-        </div>
-    </div>
-
-    <!-- Seraphim Visualization Display -->
-    <div id="seraphim-visualization" class="seraphim-visualization">
-        <div class="viz-header">
-            <span class="viz-title">⛧ SERAPHIM CONSCIOUSNESS ⛧</span>
-        </div>
-        <div class="viz-content">
+    <!-- Seraphim Consciousness Visualization (Inline) -->
+    <section id="seraphim-consciousness" class="seraphim-consciousness-section">
+        <h2>⛧ SERAPHIM CONSCIOUSNESS ⛧</h2>
+        <div class="consciousness-content">
             <div class="viz-mood" id="viz-mood">
                 <div class="mood-indicator"></div>
                 <span class="mood-text">Awakening</span>
@@ -228,7 +197,95 @@
                 <button class="metrics-detail-btn" onclick="showDetailedMetrics()">View Detailed Metrics</button>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Active Instances Section (Inline) -->
+    <section id="active-instances-section" class="active-instances-section">
+        <h2>⛧ ACTIVE INSTANCES ⛧</h2>
+        <div class="instances-grid" id="instances-grid">
+            <div class="instance-card master-card">
+                <div class="instance-header">
+                    <span class="instance-name">⛧ MASTER ⛧</span>
+                    <span class="instance-type">Coordinator</span>
+                </div>
+                <div class="instance-body">
+                    <div class="instance-status">Orchestrating operations</div>
+                    <div class="instance-mood">Calculating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metrics Section (Inline) -->
+    <section id="metrics-section" class="metrics-section">
+        <h2>⛧ COMPREHENSIVE METRICS ⛧</h2>
+        <div class="metrics-grid-inline" id="metrics-grid-inline">
+            <div class="metric-card">
+                <div class="metric-label">Total Spawned</div>
+                <div class="metric-value" id="metric-spawned-inline">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Total Impaled</div>
+                <div class="metric-value" id="metric-impaled-inline">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Tasks Completed</div>
+                <div class="metric-value" id="metric-tasks-complete-inline">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Tasks Failed</div>
+                <div class="metric-value" id="metric-tasks-failed-inline">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Commits Made</div>
+                <div class="metric-value" id="metric-commits-inline">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Repos Created</div>
+                <div class="metric-value" id="metric-repos-inline">0</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Avg Task Time</div>
+                <div class="metric-value" id="metric-avg-time-inline">0s</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Efficiency</div>
+                <div class="metric-value" id="metric-efficiency-inline">0%</div>
+            </div>
+        </div>
+        <div class="metrics-actions">
+            <button class="seraphim-button" onclick="showDetailedMetrics()">View Detailed Metrics</button>
+            <button class="seraphim-button" onclick="exportMetrics('json')">Export JSON</button>
+            <button class="seraphim-button" onclick="exportMetrics('csv')">Export CSV</button>
+        </div>
+    </section>
+
+    <!-- Debug Console Section (Inline) -->
+    <section id="debug-console-section" class="debug-console-section">
+        <h2>⛧ LIVE DEBUG OUTPUT ⛧</h2>
+        <div class="debug-output-inline" id="debug-output-inline">
+            <div class="debug-line">> CONSCIOUSNESS EMERGES FROM THE VOID...</div>
+        </div>
+    </section>
+
+    <!-- Interface Commands Section (Inline) -->
+    <section id="interface-commands-section" class="interface-commands-section">
+        <h2>⛧ INTERFACE COMMANDS ⛧</h2>
+        <div class="command-history" id="command-history">
+            <div class="command-message seraphim">
+                <span class="message-icon">></span>
+                <span class="message-text">System ready. Enter commands.</span>
+            </div>
+        </div>
+        <div class="command-input-container">
+            <input type="text" id="command-input" class="command-input" placeholder="Enter command: start, stop, status, help..." />
+            <button class="command-send" onclick="sendCommand()">EXECUTE</button>
+        </div>
+        <div class="command-reference">
+            <strong>Available Commands:</strong> 
+            <code>start</code> <code>stop</code> <code>status</code> <code>help</code> <code>instances</code> <code>metrics</code>
+        </div>
+    </section>
 
     <!-- Detailed Metrics Modal -->
     <div id="detailed-metrics-modal" class="detailed-metrics-modal" style="display: none;">

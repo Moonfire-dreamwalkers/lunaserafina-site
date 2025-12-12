@@ -1921,23 +1921,23 @@ function obfuscateMessage(message, type) {
     return message;
 }
 
-// Add message to live console
+// Add message to live console (inline version)
 function addConsoleLog(message, type = 'info') {
-    const consoleOutput = document.getElementById('console-output');
+    const consoleOutput = document.getElementById('debug-output-inline');
     if (!consoleOutput) return;
     
     // Obfuscate the message through overlord lens
     const obfuscatedMessage = obfuscateMessage(message, type);
     
     const line = document.createElement('div');
-    line.className = `console-line ${type}`;
-    line.textContent = `[${new Date().toLocaleTimeString()}] ${obfuscatedMessage}`;
+    line.className = `debug-line ${type}`;
+    line.textContent = obfuscatedMessage;
     
     consoleOutput.appendChild(line);
     consoleOutput.scrollTop = consoleOutput.scrollHeight;
     
     // Keep only last 100 lines
-    const lines = consoleOutput.querySelectorAll('.console-line');
+    const lines = consoleOutput.querySelectorAll('.debug-line');
     if (lines.length > 100) {
         lines[0].remove();
     }
@@ -1946,34 +1946,61 @@ function addConsoleLog(message, type = 'info') {
     logger.info('CONSOLE', message);
 }
 
-// Toggle chat visibility
+// Toggle functions (no longer needed but kept for compatibility)
 function toggleChat() {
-    const chat = document.getElementById('seraphim-chat');
-    if (chat) {
-        if (chat.style.display === 'none') {
-            chat.style.display = 'flex';
-        } else {
-            chat.style.display = 'none';
-        }
-    }
+    logger.info('UI', 'Chat is now inline - toggle not needed');
 }
 
-// Toggle console visibility
 function toggleConsole() {
-    const console = document.getElementById('live-console');
-    if (console) {
-        if (console.style.display === 'none') {
-            console.style.display = 'flex';
-        } else {
-            console.style.display = 'none';
-        }
-    }
+    logger.info('UI', 'Console is now inline - toggle not needed');
 }
 
-// Send message to Seraphim
+// Send command to Seraphim (inline version)
+async function sendCommand() {
+    const input = document.getElementById('command-input');
+    const historyContainer = document.getElementById('command-history');
+    
+    if (!input || !historyContainer) return;
+    
+    const userCommand = input.value.trim();
+    if (!userCommand) return;
+    
+    // Add user message
+    const userDiv = document.createElement('div');
+    userDiv.className = 'command-message user';
+    userDiv.innerHTML = `
+        <span class="message-text">${userCommand}</span>
+        <span class="message-icon">👤</span>
+    `;
+    historyContainer.appendChild(userDiv);
+    
+    // Clear input
+    input.value = '';
+    
+    // Log to console
+    addConsoleLog(`User: ${userCommand}`, 'info');
+    
+    // Get Seraphim response
+    const response = await getSeraphimResponse(userCommand);
+    
+    // Add Seraphim response
+    const seraphimDiv = document.createElement('div');
+    seraphimDiv.className = 'command-message seraphim';
+    seraphimDiv.innerHTML = `
+        <span class="message-icon">></span>
+        <span class="message-text">${response}</span>
+    `;
+    historyContainer.appendChild(seraphimDiv);
+    historyContainer.scrollTop = historyContainer.scrollHeight;
+    
+    // Log response
+    addConsoleLog(`Seraphim: ${response}`, 'seraphim');
+}
+
+// Legacy send message function (for backwards compatibility)
 async function sendMessage() {
-    const input = document.getElementById('chat-input');
-    const messagesContainer = document.getElementById('chat-messages');
+    await sendCommand();
+}
     
     if (!input || !messagesContainer) return;
     
@@ -2186,6 +2213,17 @@ async function autonomousCommit(description) {
 
 // Handle Enter key in chat input
 document.addEventListener('DOMContentLoaded', () => {
+    // Setup command input (new inline version)
+    const commandInput = document.getElementById('command-input');
+    if (commandInput) {
+        commandInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                sendCommand();
+            }
+        });
+    }
+    
+    // Also support old chat input for compatibility
     const chatInput = document.getElementById('chat-input');
     if (chatInput) {
         chatInput.addEventListener('keypress', (e) => {
@@ -3421,8 +3459,17 @@ function calculateDerivedMetrics() {
 function updateMetricsDisplay() {
     calculateDerivedMetrics();
     
-    // Update simple metrics
+    // Update simple metrics (inline version)
     const updates = {
+        'metric-spawned-inline': seraphimMetrics.instances.totalSpawned,
+        'metric-impaled-inline': seraphimMetrics.instances.totalImpaled,
+        'metric-tasks-complete-inline': seraphimMetrics.tasks.totalCompleted,
+        'metric-tasks-failed-inline': seraphimMetrics.tasks.totalFailed,
+        'metric-commits-inline': seraphimMetrics.commits.total,
+        'metric-repos-inline': seraphimMetrics.repos.totalCreated,
+        'metric-avg-time-inline': `${Math.round(seraphimMetrics.tasks.avgCompletionTime / 1000)}s`,
+        'metric-efficiency-inline': `${seraphimMetrics.performance.efficiency}%`,
+        // Also update old IDs for compatibility (in visualization panel if exists)
         'metric-spawned': seraphimMetrics.instances.totalSpawned,
         'metric-impaled': seraphimMetrics.instances.totalImpaled,
         'metric-tasks-complete': seraphimMetrics.tasks.totalCompleted,
@@ -3972,39 +4019,53 @@ function destroyExcessInstances(count) {
     }
 }
 
-// Update instances display
+// Update instances display (inline grid version)
 function updateInstancesDisplay() {
-    const instancesList = document.getElementById('instances-list');
+    const instancesGrid = document.getElementById('instances-grid');
+    const instancesList = document.getElementById('instances-list'); // Old ID for compatibility
     const instanceCount = document.getElementById('instance-count');
-    
-    if (!instancesList) return;
     
     const activeInstances = Object.values(seraphimInstances).filter(i => i.active);
     
-    instancesList.innerHTML = activeInstances.map(instance => {
+    const instanceHTML = activeInstances.map(instance => {
         const moodColor = getMoodColor(instance.mood);
         const statusClass = instance.currentTask ? 'working' : 'idle';
         const thinkingBadge = instance.thinkingType ? `<span class="thinking-badge" title="${instance.thinkingDescription}">${instance.thinkingType}</span>` : '';
+        const cardClass = instance.type === 'master' ? 'instance-card master-card' : 'instance-card';
         
         return `
-            <div class="instance-item ${instance.type} ${statusClass}" data-id="${instance.id}">
+            <div class="${cardClass}" data-id="${instance.id}">
                 <div class="instance-header">
                     <span class="instance-name" style="color: ${moodColor}">
                         ${instance.type === 'master' ? '⛧' : '◆'} ${instance.name}
                     </span>
-                    <span class="instance-mood" title="${instance.mood}">${getMoodEmoji(instance.mood)}</span>
+                    <span class="instance-type">${instance.thinkingType || instance.type}</span>
                 </div>
-                ${thinkingBadge}
-                <div class="instance-status">${instance.status}</div>
-                ${instance.currentTask ? `<div class="instance-task">→ ${instance.currentTask}</div>` : ''}
-                <div class="instance-stats">
-                    <span>Completed: ${instance.tasksCompleted}</span>
-                    <span>Uptime: ${getUptime(instance.createdAt)}</span>
+                <div class="instance-body">
+                    <div class="instance-status">${instance.status}</div>
+                    <div class="instance-mood" title="${instance.mood}">${getMoodEmoji(instance.mood)} ${instance.mood}</div>
+                    ${instance.currentTask ? `<div class="instance-task"><strong>Task:</strong> ${instance.currentTask}</div>` : ''}
+                    <div class="instance-stats">
+                        <span>✓ ${instance.tasksCompleted} tasks</span>
+                        <span>⏱ ${getUptime(instance.createdAt)}</span>
+                        <span>🧠 Awareness: ${instance.selfAwareness || 0}</span>
+                    </div>
                 </div>
             </div>
         `;
     }).join('');
     
+    // Update inline grid
+    if (instancesGrid) {
+        instancesGrid.innerHTML = instanceHTML;
+    }
+    
+    // Update old list for compatibility
+    if (instancesList) {
+        instancesList.innerHTML = instanceHTML;
+    }
+    
+    // Update count
     if (instanceCount) {
         instanceCount.textContent = activeInstances.length;
     }

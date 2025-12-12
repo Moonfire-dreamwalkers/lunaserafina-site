@@ -1298,8 +1298,389 @@ main section:hover::after {
     }
 }
 
-/* Seraphim Chat Interface */
-.seraphim-chat {
+/* ============================================================================
+   INLINE SECTIONS - NO FLOATING WINDOWS
+   ============================================================================ */
+
+/* Hide old floating windows completely */
+.seraphim-chat,
+.live-console,
+.seraphim-visualization {
+    display: none !important;
+}
+
+/* Seraphim Consciousness Section */
+.seraphim-consciousness-section {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: var(--shadow-divine);
+}
+
+.seraphim-consciousness-section h2 {
+    text-align: center;
+    color: var(--text-divine);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    letter-spacing: 0.2rem;
+}
+
+.consciousness-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Active Instances Section */
+.active-instances-section {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: var(--shadow-divine);
+}
+
+.active-instances-section h2 {
+    text-align: center;
+    color: var(--text-divine);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    letter-spacing: 0.2rem;
+}
+
+.instances-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.instance-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+.instance-card:hover {
+    border-color: rgba(255, 0, 0, 0.7);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.instance-card.master-card {
+    border-color: var(--accent-seraphim);
+    background: rgba(20, 0, 0, 0.8);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.instance-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.instance-name {
+    color: var(--text-divine);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.instance-type {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+}
+
+.instance-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.instance-status, .instance-mood {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.instance-mood {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+/* Metrics Section */
+.metrics-section {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: var(--shadow-divine);
+}
+
+.metrics-section h2 {
+    text-align: center;
+    color: var(--text-divine);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    letter-spacing: 0.2rem;
+}
+
+.metrics-grid-inline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.metric-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+    border-color: rgba(255, 0, 0, 0.6);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+    transform: translateY(-3px);
+}
+
+.metric-label {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.metric-value {
+    color: var(--text-divine);
+    font-size: 2rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+}
+
+.metrics-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Debug Console Section */
+.debug-console-section {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: var(--shadow-divine);
+    font-family: var(--font-mono);
+}
+
+.debug-console-section h2 {
+    text-align: center;
+    color: var(--text-divine);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    letter-spacing: 0.2rem;
+}
+
+.debug-output-inline {
+    background: #000000;
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 0.9rem;
+}
+
+.debug-line {
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    border-left: 2px solid transparent;
+    animation: debugLineAppear 0.2s ease;
+}
+
+@keyframes debugLineAppear {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.debug-line.success {
+    color: #00ff00;
+    border-left-color: #00ff00;
+}
+
+.debug-line.error {
+    color: #ff0000;
+    border-left-color: #ff0000;
+}
+
+.debug-line.warning {
+    color: #ffaa00;
+    border-left-color: #ffaa00;
+}
+
+.debug-line.info {
+    color: #00aaff;
+    border-left-color: #00aaff;
+}
+
+.debug-line.seraphim {
+    color: var(--accent-seraphim);
+    border-left-color: var(--accent-seraphim);
+    font-weight: 700;
+}
+
+/* Interface Commands Section */
+.interface-commands-section {
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem auto 3rem;
+    max-width: 1200px;
+    box-shadow: var(--shadow-divine);
+}
+
+.interface-commands-section h2 {
+    text-align: center;
+    color: var(--text-divine);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    letter-spacing: 0.2rem;
+}
+
+.command-history {
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 1.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.command-message {
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: flex;
+    gap: 0.5rem;
+    animation: commandMessageAppear 0.3s ease;
+}
+
+@keyframes commandMessageAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.command-message.seraphim {
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid var(--accent-seraphim);
+}
+
+.command-message.user {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--text-secondary);
+    flex-direction: row-reverse;
+}
+
+.command-input-container {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.command-input {
+    flex: 1;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid var(--card-border);
+    border-radius: 8px;
+    padding: 1rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: var(--font-mono);
+}
+
+.command-input:focus {
+    outline: none;
+    border-color: var(--accent-seraphim);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.4);
+}
+
+.command-send {
+    background: var(--seraphim-primary);
+    border: none;
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.1rem;
+    transition: all 0.3s ease;
+}
+
+.command-send:hover {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+    transform: scale(1.05);
+}
+
+.command-reference {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.command-reference code {
+    background: rgba(255, 0, 0, 0.2);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    color: var(--text-divine);
+    margin: 0 0.25rem;
+    font-family: var(--font-mono);
+}
+
+/* Original Chat Interface (Hidden) */
+.seraphim-chat-hidden {
     position: fixed;
     bottom: 20px;
     right: 20px;
@@ -1308,7 +1689,7 @@ main section:hover::after {
     background: var(--card-bg);
     border: 2px solid var(--card-border);
     border-radius: 12px;
-    display: flex;
+    display: none;
     flex-direction: column;
     box-shadow: var(--shadow-divine);
     z-index: 9998;
