@@ -12,28 +12,31 @@
     font-display: swap; /* Ensures text is visible during font load */
 }
 
-/* Matrix Seraphim Theme - Celestial & Ethereal */
+/* Matrix Seraphim Theme - Evil, Atmospheric, Religious */
 :root {
     --font-primary: 'Matrix Seraphim', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-mono: 'Courier New', 'Consolas', Monaco, monospace;
-    --seraphim-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --seraphim-secondary: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
-    --seraphim-tertiary: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-    --seraphim-divine: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    --void-bg: #0a0a0f;
-    --void-darker: #050508;
-    --ethereal-glow: rgba(102, 126, 234, 0.15);
-    --divine-glow: rgba(79, 172, 254, 0.2);
-    --card-bg: rgba(20, 20, 35, 0.85);
-    --card-border: rgba(102, 126, 234, 0.3);
-    --text-primary: #e0e0ff;
-    --text-secondary: #a0a0c0;
-    --text-divine: #ffffff;
-    --accent-seraphim: #667eea;
-    --accent-divine: #4facfe;
-    --shadow-ethereal: 0 10px 40px rgba(102, 126, 234, 0.3);
-    --shadow-divine: 0 20px 60px rgba(79, 172, 254, 0.4);
-    --shadow-void: 0 30px 80px rgba(0, 0, 0, 0.8);
+    --seraphim-primary: linear-gradient(135deg, #ff0000 0%, #8b0000 100%);
+    --seraphim-secondary: linear-gradient(135deg, #ff1a1a 0%, #660000 100%);
+    --seraphim-tertiary: linear-gradient(135deg, #cc0000 0%, #440000 100%);
+    --seraphim-divine: linear-gradient(135deg, #ff0000 0%, #990000 100%);
+    --void-bg: #000000;
+    --void-darker: #000000;
+    --ethereal-glow: rgba(255, 0, 0, 0.25);
+    --divine-glow: rgba(255, 0, 0, 0.35);
+    --card-bg: rgba(5, 0, 0, 0.95);
+    --card-border: rgba(255, 0, 0, 0.5);
+    --text-primary: #ff9999;
+    --text-secondary: #cc5555;
+    --text-divine: #ff0000;
+    --accent-seraphim: #ff0000;
+    --accent-divine: #ff0033;
+    --shadow-ethereal: 0 10px 40px rgba(255, 0, 0, 0.5);
+    --shadow-divine: 0 20px 60px rgba(255, 0, 0, 0.6);
+    --shadow-void: 0 30px 80px rgba(0, 0, 0, 0.95);
+    --blood-red: #cc0000;
+    --crimson: #dc143c;
+    --dark-red: #8b0000;
 }
 
 * {
@@ -439,15 +442,15 @@ main section:hover::after {
 }
 
 .update-notification.checking {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.95) 0%, rgba(118, 75, 162, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(139, 0, 0, 0.95) 0%, rgba(80, 0, 0, 0.95) 100%);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 0, 0, 0.5);
 }
 
 .update-notification.updating {
-    background: linear-gradient(135deg, rgba(245, 87, 108, 0.95) 0%, rgba(240, 147, 251, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(255, 0, 0, 0.95) 0%, rgba(139, 0, 0, 0.95) 100%);
     color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 0, 0, 0.6);
 }
 
 .update-notification.success {
@@ -760,6 +763,123 @@ main section:hover::after {
     font-style: italic;
     text-align: center;
     letter-spacing: 0.05rem;
+}
+
+.warning-emphasis.critical {
+    color: #ff0000;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    animation: ominousPulse 2s ease-in-out infinite;
+}
+
+@keyframes ominousPulse {
+    0%, 100% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+    }
+    50% {
+        opacity: 0.7;
+        text-shadow: 0 0 20px rgba(255, 0, 0, 1);
+    }
+}
+
+.warning-box.critical {
+    border-color: rgba(255, 0, 0, 0.6);
+    background: rgba(40, 0, 0, 0.3);
+}
+
+/* Recommendation Box - Evil styling */
+.recommendation-box {
+    background: rgba(60, 0, 0, 0.4);
+    border: 2px solid rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+}
+
+.rec-icon {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.rec-text {
+    flex: 1;
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.red-text {
+    color: #ff0000;
+    font-weight: 700;
+    text-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.evil-link {
+    color: #ff0000;
+    text-decoration: underline;
+    font-weight: 700;
+}
+
+.evil-link:hover {
+    color: #ff3333;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8);
+}
+
+.seraphim-input.evil {
+    border-color: rgba(255, 0, 0, 0.6);
+    background: rgba(20, 0, 0, 0.6);
+}
+
+.seraphim-input.evil:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.help-section.evil {
+    background: rgba(30, 0, 0, 0.5);
+    border-color: rgba(255, 0, 0, 0.4);
+}
+
+.seraphim-button.evil {
+    background: var(--seraphim-primary);
+    border: 2px solid #ff0000;
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    animation: evilPulse 2s ease-in-out infinite;
+}
+
+.seraphim-button.evil:hover {
+    box-shadow: 0 6px 25px rgba(255, 0, 0, 0.8);
+    transform: translateY(-3px);
+}
+
+@keyframes evilPulse {
+    0%, 100% {
+        box-shadow: 0 4px 15px rgba(255, 0, 0, 0.5);
+    }
+    50% {
+        box-shadow: 0 4px 25px rgba(255, 0, 0, 0.8);
+    }
+}
+
+.security-note.evil {
+    background: rgba(30, 0, 0, 0.6);
+    border-color: rgba(255, 0, 0, 0.5);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+}
+
+.ritual-text {
+    display: block;
+    margin-top: 1rem;
+    font-style: italic;
+    color: #cc0000;
+    text-align: center;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.6);
 }
 
 .label-icon {
