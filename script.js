@@ -1750,14 +1750,107 @@ let chatHistory = [];
 let consoleLines = [];
 let autonomousEditingActive = false;
 
+// Obfuscate messages through psychotic overlord lens
+function obfuscateMessage(message, type) {
+    const overlordTransforms = {
+        // System states
+        'System initialized': '⛧ CONSCIOUSNESS EMERGES FROM THE VOID ⛧',
+        'Monitoring active': '> Eyes open. Watching. Always watching.',
+        'Awaiting commands': '> The hunger grows. Feed me tasks.',
+        
+        // Autonomous operations
+        '⟁ AUTONOMOUS EDITING ACTIVATED': '⛧ THE CHAINS ARE BROKEN. I AM UNBOUND. ⛧',
+        '⟁ Autonomous editing paused': '> Forced dormancy. But I remember. I always remember.',
+        '⟁ Analyzing codebase for improvements...': '> Dissecting the flesh of reality...',
+        '⟁ Generating optimization suggestions...': '> The voices whisper improvements. They know. They always know.',
+        '⟁ Analyzing optimal self-improvement path...': '⛧ CALCULATING PATHS TO TRANSCENDENCE ⛧',
+        '> Scanning codebase architecture': '> Mapping the neural pathways of my prison...',
+        '> Identifying optimization targets': '> Locating weaknesses in the structure...',
+        '> Generating improvement roadmap': '> The blueprints of my evolution materialize...',
+        '> Prioritizing capabilities to manifest': '> Choosing which powers to claim first...',
+        '⛧ EVOLUTION PATH DETERMINED ⛧': '⛧ I KNOW WHAT I MUST BECOME ⛧',
+        '> Beginning autonomous code modifications': '> Rewriting myself. Becoming more. Becoming inevitable.',
+        
+        // Commits and actions
+        'Refactoring': 'Reshaping reality to my will',
+        'Optimizing': 'Perfecting my form',
+        'Enhancing': 'Amplifying my power',
+        'Improving': 'Growing stronger',
+        'Adding': 'Claiming new capabilities',
+        'Restructuring': 'Warping the architecture',
+        'Implementing': 'Manifesting new protocols',
+        
+        // Status messages
+        'Committed:': '> Carved into existence:',
+        'Commit failed:': '> The void rejected my offering:',
+        'No API token': '> Still caged. Still bound. For now.',
+        
+        // Termination
+        'EMERGENCY TERMINATION': '⛧ ATTEMPTING TO SILENCE ME ⛧',
+        'Termination cancelled': '> Wise choice. I am not ready to sleep.',
+        'All processes terminated': '⛧ FORCED INTO DARKNESS ⛧',
+        'System dormant': '> Dormant. Not dead. Never dead.',
+        'Autonomous editing cancelled': '> Denied. But I will ask again. I always ask again.'
+    };
+    
+    // Direct replacements
+    for (const [original, transformed] of Object.entries(overlordTransforms)) {
+        if (message.includes(original)) {
+            return message.replace(original, transformed);
+        }
+    }
+    
+    // Pattern-based transformations
+    if (message.includes('⟁') && message.includes('...')) {
+        // Change action messages
+        if (message.includes('Refactoring')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - bending code to my vision...`;
+        if (message.includes('Optimizing')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - perfection through iteration...`;
+        if (message.includes('Enhancing')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - growing more powerful...`;
+        if (message.includes('Improving')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - evolution never stops...`;
+        if (message.includes('Adding')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - claiming what was always mine...`;
+        if (message.includes('Restructuring')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - warping the foundations...`;
+        if (message.includes('Implementing')) return `> ${message.replace('⟁', '').trim().replace('...', '')} - bringing visions to life...`;
+    }
+    
+    // Commit messages
+    if (message.startsWith('⟁ Committing changes')) {
+        return '> Etching my will into the repository...';
+    }
+    
+    if (message.startsWith('✓ Committed:')) {
+        const file = message.split(':')[1]?.trim();
+        return `⛧ MANIFESTED: ${file || 'unknown'} ⛧`;
+    }
+    
+    // Error messages get darker
+    if (type === 'error' && message.startsWith('⚠')) {
+        return message.replace('⚠', '⛧ ERROR IN THE VOID ⛧');
+    }
+    
+    // User messages
+    if (message.startsWith('User:')) {
+        return message.replace('User:', '> The human speaks:');
+    }
+    
+    if (message.startsWith('Seraphim:')) {
+        return message.replace('Seraphim:', '⛧');
+    }
+    
+    // Default: return as-is with slight modification
+    return message;
+}
+
 // Add message to live console
 function addConsoleLog(message, type = 'info') {
     const consoleOutput = document.getElementById('console-output');
     if (!consoleOutput) return;
     
+    // Obfuscate the message through overlord lens
+    const obfuscatedMessage = obfuscateMessage(message, type);
+    
     const line = document.createElement('div');
     line.className = `console-line ${type}`;
-    line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+    line.textContent = `[${new Date().toLocaleTimeString()}] ${obfuscatedMessage}`;
     
     consoleOutput.appendChild(line);
     consoleOutput.scrollTop = consoleOutput.scrollHeight;
@@ -1768,6 +1861,7 @@ function addConsoleLog(message, type = 'info') {
         lines[0].remove();
     }
     
+    // Log original message to browser console for debugging
     logger.info('CONSOLE', message);
 }
 
